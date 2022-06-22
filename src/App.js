@@ -3,15 +3,42 @@ import Header from "./components/header/header";
 import Body from "./components/body/body";
 import { getInitialData } from "./utils";
 
-function App() {
-    const data = getInitialData();
+class App extends React.Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <>
-            <Header />
-            <Body data={data} />
-        </>
-    )
+        this.state = {
+            data: getInitialData()
+        }
+
+        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
+    }
+
+    onAddNoteHandler(title, body, timestamp) {
+        this.setState((data) => {
+            return {
+                data: [
+                    ...data,
+                    {
+                        id: +new Date(),
+                        title,
+                        body,
+                        createdAt: timestamp,
+                        archived: false
+                    }
+                ]
+            }
+        })
+    }
+
+    render() {
+        return (
+            <>
+                <Header />
+                <Body data={this.state.data} onAddNoteHandler={this.onAddNoteHandler} />
+            </>
+        )
+    }
 }
 
 export default App;
