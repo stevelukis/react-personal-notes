@@ -1,5 +1,4 @@
 import React from "react";
-import body from "./body";
 
 class NoteInput extends React.Component {
     constructor(props) {
