@@ -14,18 +14,19 @@ class App extends React.Component {
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
     }
 
-    onAddNoteHandler(title, body, timestamp) {
-        this.setState((data) => {
+    onAddNoteHandler(title, body) {
+        const timestamp = new Date();
+        this.setState((prevState) => {
             return {
                 data: [
-                    ...data,
                     {
-                        id: +new Date(),
+                        id: +timestamp,
                         title,
                         body,
                         createdAt: timestamp,
                         archived: false
-                    }
+                    },
+                    ...prevState.data
                 ]
             }
         })
