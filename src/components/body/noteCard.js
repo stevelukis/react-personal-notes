@@ -1,10 +1,14 @@
 import React from 'react';
 import { showFormattedDate } from "../../utils";
 
-function NoteCard({ id, title, timestamp, body, archiveTriggerText, onDeleteHandler }) {
+function NoteCard({ id, title, timestamp, body, archiveTriggerText, onDeleteHandler, onArchiveTriggerHandler }) {
 
     const onDeleteClickEventHandler = () => {
         onDeleteHandler(id);
+    }
+
+    const onArchiveTriggerClickEventHandler = () => {
+        onArchiveTriggerHandler(id);
     }
 
     return (
@@ -16,7 +20,10 @@ function NoteCard({ id, title, timestamp, body, archiveTriggerText, onDeleteHand
             </div>
             <div className="note-item__action">
                 <button className="note-item__delete-button" onClick={onDeleteClickEventHandler}>Hapus</button>
-                <button className="note-item__archive-button">{archiveTriggerText}</button>
+                <button className="note-item__archive-button"
+                        onClick={onArchiveTriggerClickEventHandler}>
+                    {archiveTriggerText}
+                </button>
             </div>
         </div>
     )

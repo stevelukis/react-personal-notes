@@ -13,6 +13,7 @@ class App extends React.Component {
 
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
+        this.onArchiveTriggerHandler = this.onArchiveTriggerHandler.bind(this);
     }
 
     onAddNoteHandler(title, body) {
@@ -41,12 +42,25 @@ class App extends React.Component {
         })
     }
 
+    onArchiveTriggerHandler(id) {
+        this.setState((prevState) => {
+            return {
+                data: prevState.data.map((note) => {
+                    if (note.id === id) {
+                        note.archived = !note.archived
+                    }
+                    return note;
+                })
+            }
+        })
+    }
+
     render() {
         return (
             <>
                 <Header />
                 <Body data={this.state.data} onAddNoteHandler={this.onAddNoteHandler}
-                      onDeleteHandler={this.onDeleteHandler} />
+                      onDeleteHandler={this.onDeleteHandler} onArchiveTriggerHandler={this.onArchiveTriggerHandler} />
             </>
         )
     }
