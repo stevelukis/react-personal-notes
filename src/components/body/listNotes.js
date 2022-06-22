@@ -1,12 +1,18 @@
 import React from "react";
 import NoteCard from "./noteCard";
 
-function ListNotes({ title, archiveTriggerText }) {
+function ListNotes({ title, archiveTriggerText, data }) {
+    console.log(data)
     return (
         <>
             <h2>{title}</h2>
             <div className="notes-list">
-                <NoteCard title={"Test title"} content="dafawe" timestamp={new Date()} archiveTriggerText={archiveTriggerText} />
+                {
+                    data.map((note) => (
+                        <NoteCard key={note.id} title={note.title} body={note.body} timestamp={note.createdAt}
+                                  archiveTriggerText={archiveTriggerText} />
+                    ))
+                }
             </div>
         </>
     );
