@@ -1,11 +1,11 @@
 import React from 'react';
 import SearchBox from "./searchBox";
 
-function Header() {
+function Header({ onSearchKeywordChangeHandler }) {
     return (
         <header className="note-app__header">
             <h1>Notes</h1>
-            <SearchBox />
+            <SearchBox onSearchKeywordChangeHandler={onSearchKeywordChangeHandler} />
         </header>
     )
 }

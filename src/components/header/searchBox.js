@@ -1,13 +1,13 @@
 import React from 'react';
 
-class SearchBox extends React.Component {
-    render() {
-        return (
-            <div>
-                <input placeholder="Cari catatan ..." />
-            </div>
-        );
-    }
+function SearchBox({ onSearchKeywordChangeHandler }) {
+    return (
+        <div>
+            <input placeholder="Cari catatan ..." onChange={(e) => {
+                onSearchKeywordChangeHandler(e.target.value)
+            }} />
+        </div>
+    );
 }
 
 export default SearchBox;

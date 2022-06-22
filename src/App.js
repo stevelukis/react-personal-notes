@@ -8,12 +8,20 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            data: getInitialData()
+            data: getInitialData(),
+            searchKeyword: ''
         }
 
+        this.onSearchKeywordChangeHandler = this.onSearchKeywordChangeHandler.bind(this);
         this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onArchiveTriggerHandler = this.onArchiveTriggerHandler.bind(this);
+    }
+
+    onSearchKeywordChangeHandler(newKeyword) {
+        this.setState({
+            searchKeyword: newKeyword
+        })
     }
 
     onAddNoteHandler(title, body) {
@@ -55,11 +63,20 @@ class App extends React.Component {
         })
     }
 
+    getViewData() {
+        return this.state.data.filter((note) => {
+            // Case-insensitive search
+            const titleLowerCase = note.title.toLowerCase();
+            const keywordLowerCase = this.state.searchKeyword.toLowerCase();
+            return titleLowerCase.includes(keywordLowerCase);
+        });
+    }
+
     render() {
         return (
             <>
-                <Header />
-                <Body data={this.state.data} onAddNoteHandler={this.onAddNoteHandler}
+                <Header onSearchKeywordChangeHandler={this.onSearchKeywordChangeHandler} />
+                <Body data={this.getViewData()} onAddNoteHandler={this.onAddNoteHandler}
                       onDeleteHandler={this.onDeleteHandler} onArchiveTriggerHandler={this.onArchiveTriggerHandler} />
             </>
         )
