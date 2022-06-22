@@ -3,7 +3,7 @@ import { showFormattedDate } from "../../utils";
 
 function NoteCard({ id, title, timestamp, body, archiveTriggerText, onDeleteHandler }) {
 
-    const onDeleteClickEventHandler = (e) => {
+    const onDeleteClickEventHandler = () => {
         onDeleteHandler(id);
     }
 
