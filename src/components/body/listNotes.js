@@ -2,7 +2,6 @@ import React from "react";
 import NoteCard from "./noteCard";
 
 function ListNotes({ title, archiveTriggerText, data }) {
-    console.log(data)
     return (
         <>
             <h2>{title}</h2>
